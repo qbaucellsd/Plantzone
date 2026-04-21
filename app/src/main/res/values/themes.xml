@@ -1,8 +1,21 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
     <style name="Base.Theme.Plantzone" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your light theme here. -->
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+        <item name="colorPrimary">@color/blue_500</item>
+        <item name="colorOnPrimary">@color/white</item>
+
+        <item name="colorSecondary">@color/orange_500</item>
+        <item name="colorOnSecondary">@color/black</item>
+
+        <item name="colorTertiary">@color/green_500</item>
+        <item name="colorOnTertiary">@color/white</item>
+
+        <item name="android:colorBackground">@color/white</item>
+        <item name="colorOnBackground">@color/black</item>
+
+        <item name="colorSurface">@color/blue_50</item>
+        <item name="colorOnSurface">@color/black</item>
+
     </style>
 
     <style name="Theme.Plantzone" parent="Base.Theme.Plantzone" />

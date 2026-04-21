@@ -1,5 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="black">#FF000000</color>
-    <color name="white">#FFFFFFFF</color>
+
+    <color name="blue_900">#004DAD</color>
+    <color name="blue_800">#006BCC</color>
+    <color name="blue_700">#007DDE</color>
+    <color name="blue_600">#008FF1</color>
+    <color name="blue_500">#009CFF</color>
+    <color name="blue_400">#3AACFF</color>
+    <color name="blue_300">#61BBFE</color>
+    <color name="blue_200">#8FCEFF</color>
+    <color name="blue_100">#BBE1FF</color>
+    <color name="blue_50">#E3F3FE</color>
+
+    <color name="orange_900">#E65200</color>
+    <color name="orange_800">#EF6D00</color>
+    <color name="orange_700">#F57D00</color>
+    <color name="orange_600">#FB8D00</color>
+    <color name="orange_500">#FF9B00</color>
+    <color name="orange_400">#FFA826</color>
+    <color name="orange_300">#FFB84D</color>
+    <color name="orange_200">#FFCD80</color>
+    <color name="orange_100">#FFE0B2</color>
+    <color name="orange_50">#FFF3E0</color>
+
+    <color name="green_900">#005324</color>
+    <color name="green_800">#00723F</color>
+    <color name="green_700">#00834B</color>
+    <color name="green_600">#009557</color>
+    <color name="green_500">#00A362</color>
+    <color name="green_400">#29B178</color>
+    <color name="green_300">#5ABE8F</color>
+    <color name="green_200">#8DD0AE</color>
+    <color name="green_100">#BAE3CE</color>
+    <color name="green_50">#E2F4EB</color>
+
+    <color name="black">#0F0F0F</color>
+    <color name="white">#FFFFFF</color>
+    <color name="gray">#949494</color>
+    <color name="lightgray">#EFEFEF</color>
+
 </resources>
