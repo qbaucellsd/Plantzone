@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/nav_inici"
+        android:icon="@drawable/home_24px"
+        android:title="Inici" />
+
+    <item
+        android:id="@+id/nav_diagnosticar"
+        android:icon="@drawable/ic_health"
+        android:title="Diagnosticar" />
+
+    <item
+        android:id="@+id/nav_camera"
+        android:icon="@drawable/ic_camera"
+        android:title=""
+        android:orderInCategory="0" />
+
+    <item
+        android:id="@+id/nav_plantes"
+        android:icon="@drawable/eco_24px"
+        android:title="Plantes" />
+
+    <item
+        android:id="@+id/nav_mes"
+        android:icon="@drawable/grid_view_24px"
+        android:title="Més" />
+
+</menu>
