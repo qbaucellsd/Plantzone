@@ -13,11 +13,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 import androidx.core.content.FileProvider;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
+import android.widget.ImageButton;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -30,13 +32,11 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // Launcher para el resultado de la cámara
+        // Launcher per al resultat de la càmera
         cameraLauncher = registerForActivityResult(
                 new ActivityResultContracts.StartActivityForResult(),
                 result -> {
                     if (result.getResultCode() == RESULT_OK) {
-                        // Foto capturada correctamente — photoUri tiene la imagen
-                        // Aquí puedes procesarla o pasarla a otra Activity
                         Intent intent = new Intent(this, DiagnosticarActivity.class);
                         intent.putExtra("photo_uri", photoUri.toString());
                         startActivity(intent);
@@ -44,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
                 }
         );
 
-        // Launcher para pedir permiso de cámara
+        // Launcher per demanar permís de càmera
         permissionLauncher = registerForActivityResult(
                 new ActivityResultContracts.RequestPermission(),
                 granted -> {
@@ -54,6 +54,7 @@ public class MainActivity extends AppCompatActivity {
                 }
         );
 
+        // Navbar
         BottomNavigationView bottomNav = findViewById(R.id.bottomNav);
         bottomNav.setSelectedItemId(R.id.nav_inici);
 
@@ -63,23 +64,29 @@ public class MainActivity extends AppCompatActivity {
                 return true;
             } else if (id == R.id.nav_diagnosticar) {
                 startActivity(new Intent(this, DiagnosticarActivity.class));
-                return true;
-            } else if (id == R.id.nav_camera) {
-                if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA)
-                        == PackageManager.PERMISSION_GRANTED) {
-                    abrirCamara();
-                } else {
-                    permissionLauncher.launch(Manifest.permission.CAMERA);
-                }
+                overridePendingTransition(0, 0);
                 return true;
             } else if (id == R.id.nav_plantes) {
                 startActivity(new Intent(this, PlantesActivity.class));
+                overridePendingTransition(0, 0);
                 return true;
             } else if (id == R.id.nav_mes) {
                 startActivity(new Intent(this, MesActivity.class));
+                overridePendingTransition(0, 0);
                 return true;
             }
             return false;
+        });
+
+        // FAB càmera — substitueix nav_camera
+        ImageButton fabCamera = findViewById(R.id.fabCamera);
+        fabCamera.setOnClickListener(v -> {
+            if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA)
+                    == PackageManager.PERMISSION_GRANTED) {
+                abrirCamara();
+            } else {
+                permissionLauncher.launch(Manifest.permission.CAMERA);
+            }
         });
     }
 

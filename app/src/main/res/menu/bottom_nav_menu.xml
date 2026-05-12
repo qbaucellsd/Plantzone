@@ -12,10 +12,9 @@
         android:title="Diagnosticar" />
 
     <item
-        android:id="@+id/nav_camera"
-        android:icon="@drawable/ic_camera"
+        android:id="@+id/nav_espai"
         android:title=""
-        android:orderInCategory="0" />
+        android:enabled="false" />
 
     <item
         android:id="@+id/nav_plantes"

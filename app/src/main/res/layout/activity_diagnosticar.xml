@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout
+<FrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
@@ -15,7 +15,8 @@
         android:paddingStart="16dp"
         android:paddingEnd="16dp"
         android:gravity="center_vertical"
-        android:background="#F0F0F0">
+        android:background="#F0F0F0"
+        android:elevation="4dp">
 
         <TextView
             android:id="@+id/tvTitle"
@@ -79,11 +80,11 @@
                     android:orientation="vertical"
                     android:padding="16dp">
 
-                    <!-- Plant illustration + icons row -->
                     <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="180dp"
                         android:layout_marginBottom="16dp">
+
                         <ImageView
                             android:id="@+id/ivPlantIllustration"
                             android:layout_width="140dp"
@@ -94,17 +95,8 @@
                             android:scaleType="fitCenter"
                             android:src="@drawable/ic_plant" />
 
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:orientation="vertical"
-                            android:layout_centerVertical="true"
-                            android:layout_alignParentEnd="true"
-                            android:layout_marginEnd="24dp"
-                            android:gravity="center_horizontal"/>
                     </RelativeLayout>
 
-                    <!-- Autodiagnòstic button -->
                     <Button
                         android:id="@+id/btnAutodiagnostic"
                         android:layout_width="match_parent"
@@ -114,14 +106,13 @@
                         android:textStyle="bold"
                         android:textColor="#FFFFFF"
                         android:backgroundTint="#F5A623"
-                        android:drawablePadding="8dp"
                         android:gravity="center"
                         app:cornerRadius="26dp" />
 
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 
-            <!-- SECTION TITLE: Problemes de la planta -->
+            <!-- SECTION TITLE -->
             <TextView
                 android:id="@+id/tvSectionTitle"
                 android:layout_width="wrap_content"
@@ -143,7 +134,6 @@
                 android:paddingBottom="20dp"
                 android:weightSum="2">
 
-                <!-- Card 1 -->
                 <androidx.cardview.widget.CardView
                     android:layout_width="0dp"
                     android:layout_height="140dp"
@@ -152,7 +142,6 @@
                     app:cardCornerRadius="12dp"
                     app:cardElevation="0dp"
                     app:cardBackgroundColor="#E0E0E0">
-
                     <ImageView
                         android:id="@+id/ivPlant1"
                         android:layout_width="64dp"
@@ -160,10 +149,8 @@
                         android:layout_gravity="center"
                         android:src="@drawable/potted_plant_24px"
                         android:contentDescription="Planta preferida 1" />
-
                 </androidx.cardview.widget.CardView>
 
-                <!-- Card 2 -->
                 <androidx.cardview.widget.CardView
                     android:layout_width="0dp"
                     android:layout_height="140dp"
@@ -172,7 +159,6 @@
                     app:cardCornerRadius="12dp"
                     app:cardElevation="0dp"
                     app:cardBackgroundColor="#E0E0E0">
-
                     <ImageView
                         android:id="@+id/ivPlant2"
                         android:layout_width="64dp"
@@ -180,7 +166,6 @@
                         android:layout_gravity="center"
                         android:src="@drawable/local_florist_24px"
                         android:contentDescription="Planta preferida 2" />
-
                 </androidx.cardview.widget.CardView>
 
             </LinearLayout>
@@ -188,12 +173,30 @@
         </LinearLayout>
     </ScrollView>
 
+    <!-- NAVBAR — declarat abans del FAB perquè quedi per sota -->
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNav"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
+        android:elevation="8dp"
         app:menu="@menu/bottom_nav_menu"
+        app:itemIconTint="@color/bottom_nav_item_color"
+        app:itemTextColor="@color/bottom_nav_item_color"
         app:labelVisibilityMode="labeled" />
 
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+    <!-- FAB CÀMERA — declarat l'últim = sempre per sobre -->
+    <ImageButton
+        android:id="@+id/fabCamera"
+        android:layout_width="56dp"
+        android:layout_height="56dp"
+        android:layout_gravity="bottom|center_horizontal"
+        android:layout_marginBottom="29dp"
+        android:src="@drawable/ic_camera"
+        android:contentDescription="Càmera"
+        android:background="@drawable/fab_circle_background"
+        android:padding="14dp"
+        android:elevation="16dp"
+        app:tint="@android:color/white" />
+
+</FrameLayout>
