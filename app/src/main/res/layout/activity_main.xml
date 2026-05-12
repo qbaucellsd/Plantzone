@@ -9,76 +9,78 @@
 
     <!-- Tot el contingut principal embolcallat -->
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:paddingBottom="80dp"
-        android:background="@color/lightgray">
+        android:background="@color/lightgray"
+        android:paddingBottom="80dp">
 
         <!-- Ciudad y clima -->
+
         <TextView
             android:id="@+id/txtCiudad"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_margin="16dp"
             android:text="Barcelona"
             android:textSize="18sp"
             android:textStyle="bold"
-            app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            android:layout_margin="16dp"/>
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/txtTemp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_margin="16dp"
             android:text="10°-12°"
-            app:layout_constraintTop_toTopOf="@id/txtCiudad"
             app:layout_constraintEnd_toEndOf="parent"
-            android:layout_margin="16dp"/>
+            app:layout_constraintTop_toTopOf="@id/txtCiudad" />
 
         <!-- Buscador -->
         <EditText
             android:id="@+id/search"
             android:layout_width="0dp"
             android:layout_height="50dp"
+            android:layout_margin="16dp"
             android:hint="Buscar plantes"
             android:padding="12dp"
-            app:layout_constraintTop_toBottomOf="@id/txtCiudad"
-            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            android:layout_margin="16dp"/>
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/txtCiudad" />
 
         <!-- Botones -->
         <LinearLayout
             android:id="@+id/menuOpciones"
             android:layout_width="0dp"
             android:layout_height="130dp"
+            android:layout_margin="16dp"
             android:orientation="horizontal"
             android:weightSum="3"
-            app:layout_constraintTop_toBottomOf="@id/search"
-            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            android:layout_margin="16dp">
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/search">
 
             <com.google.android.material.button.MaterialButton
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:text="Identificar"
                 android:layout_marginEnd="4dp"
+                android:layout_weight="1"
+                android:backgroundTint="@color/green_500"
+                android:text="Identificar"
                 app:icon="@drawable/ic_camera"
                 app:iconGravity="textTop"
                 app:iconPadding="8dp"
-                app:iconSize="32dp"
-                android:backgroundTint="@color/green_500"/>
+                app:iconSize="32dp" />
 
             <com.google.android.material.button.MaterialButton
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
+                android:layout_marginHorizontal="4dp"
                 android:layout_weight="1"
                 android:backgroundTint="@color/orange_500"
                 android:text="Diagnosticar"
                 android:textSize="12.5sp"
-                android:layout_marginHorizontal="4dp"
                 app:icon="@drawable/ic_health"
                 app:iconGravity="textTop"
                 app:iconPadding="8dp"
@@ -87,10 +89,10 @@
             <com.google.android.material.button.MaterialButton
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
+                android:layout_marginStart="4dp"
                 android:layout_weight="1"
                 android:backgroundTint="@color/green_500"
                 android:text="Jardí"
-                android:layout_marginStart="4dp"
                 app:icon="@drawable/ic_plant"
                 app:iconGravity="textTop"
                 app:iconPadding="8dp"
@@ -101,27 +103,28 @@
         <!-- Tendencias -->
         <TextView
             android:id="@+id/txtTendencias"
+            android:textColor="#1A1A1A"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Tendències a Barcelona"
-            android:textStyle="bold"
-            android:textSize="17dp"
-            app:layout_constraintTop_toBottomOf="@id/menuOpciones"
             android:layout_margin="16dp"
-            app:layout_constraintStart_toStartOf="parent"/>
+            android:text="Tendències a Barcelona"
+            android:textSize="17dp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/menuOpciones" />
 
         <LinearLayout
             android:id="@+id/gridPreferits"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
+            android:paddingTop="16dp"
             android:paddingStart="16dp"
             android:paddingEnd="16dp"
-            android:paddingBottom="20dp"
             android:weightSum="2"
-            tools:layout_editor_absoluteX="0dp"
-            tools:layout_editor_absoluteY="301dp"
-            tools:ignore="MissingConstraints">
+            app:layout_constraintTop_toBottomOf="@+id/txtTendencias"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteX="0dp">
 
             <!-- Card 1 -->
             <androidx.cardview.widget.CardView
