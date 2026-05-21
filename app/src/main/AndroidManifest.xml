@@ -34,10 +34,6 @@
                 android:resource="@xml/file_paths" />
         </provider>
 
-        <activity android:name=".DiagnosticarActivity" />
-        <activity android:name=".PlantesActivity" />
-        <activity android:name=".MesActivity" />
-
     </application>
 
 </manifest>

@@ -7,19 +7,22 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.widget.ImageButton;
+
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 import androidx.core.content.FileProvider;
+import androidx.fragment.app.Fragment;
+
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
-import android.widget.ImageButton;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -32,53 +35,25 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // Launcher per al resultat de la càmera
+        // --- Launchers de cámara ---
         cameraLauncher = registerForActivityResult(
                 new ActivityResultContracts.StartActivityForResult(),
                 result -> {
                     if (result.getResultCode() == RESULT_OK) {
-                        Intent intent = new Intent(this, DiagnosticarActivity.class);
-                        intent.putExtra("photo_uri", photoUri.toString());
-                        startActivity(intent);
+                        loadFragment(new DiagnosticarFragment());
+                        findViewById(R.id.bottomNav)
+                                .post(() -> ((BottomNavigationView) findViewById(R.id.bottomNav))
+                                        .setSelectedItemId(R.id.nav_diagnosticar));
                     }
                 }
         );
 
-        // Launcher per demanar permís de càmera
         permissionLauncher = registerForActivityResult(
                 new ActivityResultContracts.RequestPermission(),
-                granted -> {
-                    if (granted) {
-                        abrirCamara();
-                    }
-                }
+                granted -> { if (granted) abrirCamara(); }
         );
 
-        // Navbar
-        BottomNavigationView bottomNav = findViewById(R.id.bottomNav);
-        bottomNav.setSelectedItemId(R.id.nav_inici);
-
-        bottomNav.setOnItemSelectedListener(item -> {
-            int id = item.getItemId();
-            if (id == R.id.nav_inici) {
-                return true;
-            } else if (id == R.id.nav_diagnosticar) {
-                startActivity(new Intent(this, DiagnosticarActivity.class));
-                overridePendingTransition(0, 0);
-                return true;
-            } else if (id == R.id.nav_plantes) {
-                startActivity(new Intent(this, PlantesActivity.class));
-                overridePendingTransition(0, 0);
-                return true;
-            } else if (id == R.id.nav_mes) {
-                startActivity(new Intent(this, MesActivity.class));
-                overridePendingTransition(0, 0);
-                return true;
-            }
-            return false;
-        });
-
-        // FAB càmera — substitueix nav_camera
+        // --- FAB càmera ---
         ImageButton fabCamera = findViewById(R.id.fabCamera);
         fabCamera.setOnClickListener(v -> {
             if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA)
@@ -87,6 +62,23 @@ public class MainActivity extends AppCompatActivity {
             } else {
                 permissionLauncher.launch(Manifest.permission.CAMERA);
             }
+        });
+
+        // --- NavBar ---
+        BottomNavigationView bottomNav = findViewById(R.id.bottomNav);
+
+        if (savedInstanceState == null) {
+            loadFragment(new IniciFragment());
+            bottomNav.setSelectedItemId(R.id.nav_inici);
+        }
+
+        bottomNav.setOnItemSelectedListener(item -> {
+            int id = item.getItemId();
+            if (id == R.id.nav_inici)        { loadFragment(new IniciFragment());       return true; }
+            if (id == R.id.nav_diagnosticar) { loadFragment(new DiagnosticarFragment()); return true; }
+            if (id == R.id.nav_plantes)      { loadFragment(new PlantesFragment());     return true; }
+            if (id == R.id.nav_mes)          { loadFragment(new MesFragment());         return true; }
+            return false;
         });
     }
 
@@ -111,5 +103,12 @@ public class MainActivity extends AppCompatActivity {
                 .format(new Date());
         File storageDir = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
         return File.createTempFile("PLANT_" + timestamp, ".jpg", storageDir);
+    }
+
+    private void loadFragment(Fragment fragment) {
+        getSupportFragmentManager()
+                .beginTransaction()
+                .replace(R.id.fragmentContainer, fragment)
+                .commit();
     }
 }
